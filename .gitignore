@@ -25,3 +25,10 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
+
+#Eclipse Workspace
+.classpath
+.project
+
+#Macintosh
+.DS_Store
