@@ -29,6 +29,7 @@ pip-log.txt
 #Eclipse Workspace
 .classpath
 .project
+.pydevproject
 
 #Macintosh
 .DS_Store
