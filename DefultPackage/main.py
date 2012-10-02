@@ -17,9 +17,7 @@ def main():
         print "Incorrect number of arguments."
         print "Usage: python main.py" 
         sys.exit()
-
-if __name__ == '__main__':
-    main()
+    menu()
     
 
 def file_length(fi):
@@ -51,54 +49,61 @@ def p_train(num_epochs, training_data):
             temp_x2 = y[i] * x2[i]
             w[0] = w[0] + temp_x1
             w[1] = w[1] + temp_x2
-        
         i += 1     
     return w
                         
+      
         
-        
-        
-        
-    
-    
-def p_classify():
-    '''to-do'''
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-'''--------------------------------------'''
-
-
-x = 0
-while x == 0:
-    print """
-What would you like to do?
-0) Exit
-1) Train & Classify"""
-    action = raw_input("> ")
-    if action == str(1):
-        print "-------------------------------------------------"
-        print "What file would you like to train with?"
-        training_data = raw_input("> ")
-        print "How many epochs would you like to train with?"
-        num_epochs = raw_input("> ")
-        print "Training with " + num_epochs + " epochs of " + training_data + " then classifying."
-        p_train(num_epochs, training_data)
-        p_classify()
-        print "-------------------------------------------------"
-    elif action == str(0):
+def p_classify(x, w):
+    if(len(w) != 2):
+        print "cannot classify x with this weight vector: wrong size"
         sys.exit()
+    elif(len(x) != 2):
+        print "cannot classify with this test example vector: wrong size"
+        sys.exit()
+    if(((w[0] * x[0]) + (w[1] *x[1])) > 0):
+        print "1"
+        return 1
     else:
-        print "Invalid input. Try again ....."
+        print "-1"
+        return -1
+
+
+
+def menu():
+    count = 0
+    while count == 0:
+        print '''What would you like to do?
+0) Exit
+1) Train & Classify'''
+        action = raw_input("> ")
+        if action == str(1):
+            print "-------------------------------------------------"
+            print "What file would you like to train with?"
+            training_data = raw_input("> ")
+            print "How many epochs would you like to train with?"
+            num_epochs = raw_input("> ")
+            print "What file would you like to test with?"
+            testing_data = raw_input("> ")
+            print "Training with " + num_epochs + " epochs of " + training_data + " then classifying data in " + testing_data
+            w = p_train(num_epochs, training_data)
+            test_data = open(testing_data, "rt")
+            y = []
+            x1 = []
+            x2 = []
+            for line in test_data:
+                a, b, c = [float(x) for x in line.split()]
+                y.append(a)
+                x1.append(b)
+                x2.append(c)   
+            x = [x1[0], x2[0]]
+            p_classify(x,w)
+            print "-------------------------------------------------"
+        elif action == str(0):
+            sys.exit()
+        else:
+            print "Invalid input. Try again ....."
+            
+            
+if __name__ == '__main__':
+    main()
