@@ -68,15 +68,24 @@ def run_classify(w, testing_data):
     y_classified = []
     x1 = []
     x2 = []
+    posc = 0
+    negc = 0
     for i, line in enumerate(test_data):
         a, b, c = [float(x) for x in line.split()]
         y_data.append(a)
         x1.append(b)
         x2.append(c)   
         x = [x1[i], x2[i]]
-        y_classified.append(p_classify(x,w))
+        classed = p_classify(x,w)
+        y_classified.append(classed)
+        if (classed > 0):
+            posc = posc + 1
+        else:
+            negc = negc + 1
     print "here is how we classified the test data: "
     print y_classified
+    print posc
+    print negc
 
 
 def menu():
