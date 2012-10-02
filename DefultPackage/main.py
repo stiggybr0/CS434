@@ -22,8 +22,8 @@ if __name__ == '__main__':
     main()
     
 
-def file_length(file):
-    with open(file) as f:
+def file_length(fi):
+    with open(fi) as f:
         for i, l in enumerate(f):
             pass
     return i + 1
