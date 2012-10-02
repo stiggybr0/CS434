@@ -22,13 +22,17 @@ def main():
 def p_train(num_epochs, training_data):
 
     w = [0] * 2
+    wold = [-1] * 2
+    counter = 0
     train_data = open(training_data, "rt")
     
-    for counter in num_epochs:
+    while (counter < num_epochs and wold[0] != w[0] and wold[1] != w[1]):
         y = []
         x1 = []
         x2 = []
         u = []
+        wold[0] = w[0]
+        wold[1] = w[1]
         for i, line in enumerate(train_data):
             a, b, c = [float(x) for x in line.split()]
             y.append(a)
@@ -40,7 +44,10 @@ def p_train(num_epochs, training_data):
                 temp_x2 = y[i] * x2[i]
                 w[0] = w[0] + temp_x1
                 w[1] = w[1] + temp_x2  
-        return w
+        counter = counter + 1
+
+    print counter    
+    return w
                         
 def p_classify(x, w):
     if(len(w) != 2):
