@@ -22,13 +22,13 @@ def main():
 def p_train(num_epochs, training_data):
 
     w = [0] * 2
-    u = []
     train_data = open(training_data, "rt")
     
     for counter in num_epochs:
         y = []
         x1 = []
         x2 = []
+        u = []
         for i, line in enumerate(train_data):
             a, b, c = [float(x) for x in line.split()]
             y.append(a)
