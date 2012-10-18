@@ -88,13 +88,15 @@ def entropy_calc(datamap):
                 print "Sanity Check: Failed!"
             for item in list:
                 prob[item-1] = prob[item-1] + 1
+            print prob
             prob[:] = [float(x)/float(len(list)) for x in prob] 
         
             for item in prob:
-                entropyval = entropyval - item*(math.log(item)/math.log(float(len(prob))))
-            print entropyval
-        
+                entropyval = entropyval - item*(math.log(item, len(prob)))
+                
+            entropylist.append(entropyval)
         counter = counter + 1
+        entropyval = 0.0
     
 '''
 Function: menu
