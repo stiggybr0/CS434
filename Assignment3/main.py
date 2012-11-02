@@ -162,8 +162,8 @@ def converge_sse(total_sse, centroid_head, graph_data, kmeans):
                 cluster_array = cluster_assign(centroid_head, graph_data, kmeans)
                 centroid_head = compute_centroids(cluster_array)
                 total_sse = compute_sse(cluster_array, centroid_head)
-                #print total_sse
-                ssefile.write(str(total_sse)+"\n")
+                print total_sse
+                #ssefile.write(str(total_sse)+"\n")
                 
                 
 
